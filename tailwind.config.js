@@ -7,9 +7,17 @@ export default {
   theme: {
     extend: {
       fontFamily:{
-        headingFont:["Playfair Display", "serif"],
+        headingFont:["Bebas Neue", "sans-serif"],
+        headingFontTwo:["Playfair Display", "serif"],
         titleFont:[ "Oswald"," sans-serif"]
+      },
+      colors:{
+        Bg:"#F2F0F1",
+        black:"#000000",
       }
+    },
+    container: {
+      center: true,
     },
   },
   plugins: [],

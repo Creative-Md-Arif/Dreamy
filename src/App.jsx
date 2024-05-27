@@ -7,10 +7,10 @@ import {
   RouterProvider,
 } from "react-router-dom";
 
-
+// layout
 import Layout from './layout/Layout';
-import Home from './pages/home/Home';
-import Contact from './pages/contact/Contact';
+// pages
+import {Home , Contact} from "./pages"
 
 function App() {
 
@@ -21,8 +21,6 @@ function App() {
         <Route path="/" element={<Layout />} >
           <Route path='/' element={<Home/> }></Route>
           <Route path='/contact' element={<Contact/> }></Route>
-
-
         </Route>
       </Route>
     )
