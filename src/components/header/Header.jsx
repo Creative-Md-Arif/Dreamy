@@ -17,15 +17,17 @@ const Header = () => {
     <header className="py-6 bg-gradient-to-b from-gray-300 to-teal-500 sticky top-0 z-50">
       <div className="flex items-center justify-around">
         <div>
-          <h1 className=" text-[42px] font-bold text-black uppercase animate-pulse">
+         <Link to="/">
+         <h1 className=" text-[42px] font-bold text-black uppercase animate-pulse">
             Dreamy
           </h1>
+         </Link>
         </div>
         <div className="flex items-center gap-10">
           {navLinks.map(({ title, path }) => (
             <ul key={title}>
               <li className=" font-serif text-xl font-normal text-black uppercase hover:text-gray-500 transition duration-300">
-                <Link to="/">{title}</Link>
+                <Link to="#">{title}</Link>
               </li>
             </ul>
           ))}

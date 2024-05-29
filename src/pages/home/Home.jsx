@@ -4,6 +4,7 @@ import Banner from '../../components/Banner/Banner'
 import Logo from '../../components/logo/Logo'
 import NewArrivals from '../../components/newArrivals/NewArrivals'
 import { useLoaderData } from 'react-router-dom'
+import TopSelling from '../../components/topSelling/TopSelling'
 
 const Home = () => {
   const [products , setProducts] =useState([]);
@@ -17,6 +18,7 @@ useEffect(() => {
      <Banner/>
      <Logo/>
      <NewArrivals products={products}/>
+     <TopSelling products={products}/>
     </div>
   )
 }
