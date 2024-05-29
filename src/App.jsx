@@ -11,6 +11,8 @@ import {
 import Layout from './layout/Layout';
 // pages
 import {Home , Contact} from "./pages"
+import Cart from './pages/cart/Cart';
+import { productsData } from './api/Api';
 
 function App() {
 
@@ -19,7 +21,8 @@ function App() {
     createRoutesFromElements(
       <Route>
         <Route path="/" element={<Layout />} >
-          <Route path='/' element={<Home/> }></Route>
+          <Route path='/' element={<Home/> } loader={productsData}></Route>
+           <Route path='/cart' element={<Cart/>}></Route>
           <Route path='/contact' element={<Contact/> }></Route>
         </Route>
       </Route>

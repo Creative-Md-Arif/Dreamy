@@ -1,9 +1,10 @@
+import { bannerImg } from "../../assets/image";
 import Counter from "./Counter";
 
 const Banner = () => {
   return (
-    <section className="bg-Bg py-[82px]">
-      <div className="container">
+    <section className="bg-Bg pt-[82px]">
+      <div className="container flex justify-between">
         {/* left side start */}
         <div className="w-1/2 flex flex-col gap-6">
           <h1 className=" font-headingFont font-bold text-black text-6xl w-1/2">FIND CLOTHES THAT MATCHES YOUR STYLE</h1>
@@ -16,15 +17,15 @@ const Banner = () => {
           <button className="bg-gradient-to-r from-black to-gray-900 hover:from-gray-900 hover:to-black hover:text-blue-500 hover:border-blue-500 text-white font-bold py-2 px-4 rounded-full transition duration-300 ease-in-out transform hover:scale-105">Shop Now</button>
           </div>
           {/* counter components */}
-          <div>
+          <div >
             <Counter />
           </div>
           {/* counter components */}
         </div>
         {/* left side end */}
         {/* right side start */}
-        <div className="w-1/2">
-
+        <div className="w-1/2 flex items-end">
+            <img className=" ml-auto" src={bannerImg} alt=""/>
         </div>
         {/* right side End */}
       </div>
