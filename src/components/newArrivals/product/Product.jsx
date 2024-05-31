@@ -86,6 +86,23 @@ const Product = () => {
             <div className="border-b-[1px] pb-5">
               <ChoseSize/>
             </div>
+            {/* Quantity And Add to cart */}
+            <div className="flex gap-4 border-b-[1px] pb-5 ">
+              <div className="w-52 flex items-center justify-between text-gray-500 gap-4 border p-3">
+                <p className="text-sm">Quantity</p>
+              <div className=" flex items-center gap-4 text-sm font-semibold">
+                <button className="border h-5 font-normal text-lg flex items-center justify-center px-2 hover:bg-gray-700 hover:text-white cursor-pointer duration-300 active:bg-black">-</button>
+                <span>{1}</span>
+                <button className="border h-5 font-normal text-lg flex items-center justify-center px-2 hover:bg-gray-700 hover:text-white cursor-pointer duration-300 active:bg-black">+</button>
+              </div>
+              </div>
+              <button className="bg-black text-white py-3 px-6 active:bg-gray-800">Add to cart</button>
+            </div>
+            {/* category */}
+            <div>
+              <p className="font-paragraphFont text-xl font-medium text-black">Category: {productDetails.category}</p>
+            </div>
+
           </div>
         </div>
       </div>
