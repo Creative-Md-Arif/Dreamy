@@ -3,6 +3,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { profileImg } from "../../assets/image";
 import { FiShoppingCart } from "react-icons/fi";
+import { useSelector } from "react-redux";
 
 
 const Header = () => {
@@ -13,6 +14,7 @@ const Header = () => {
     { title: "Brands ", path: "/" },
   ];
 
+  const productData = useSelector((state) => state.dreamy.productData);
   return (
     <header className="py-6 bg-gradient-to-b from-gray-300 to-teal-500 sticky top-0 z-50">
       <div className="flex items-center justify-around">
@@ -42,9 +44,12 @@ const Header = () => {
           </div>
         </div>
         <div className="flex items-center gap-10">
-           <Link>
-              <div>
-              <FiShoppingCart className="text-3xl" />
+           <Link to="/cart">
+              <div className=" relative">
+              <FiShoppingCart className="text-[50px]" />
+              <span className=" absolute w-6 top-2 left-5 text-xl flex items-center justify-center">
+                {productData.length}
+                </span>
               </div>
            </Link>
            <div>

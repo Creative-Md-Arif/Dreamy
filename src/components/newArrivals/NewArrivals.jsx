@@ -1,11 +1,13 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
+import { ToastContainer } from "react-toastify";
 import Title from "../Title";
 import ProductCard from "./ProductCard";
 
 const NewArrivals = ({ products }) => {
   return (
     <section>
+      <ToastContainer/>
       <div className="container">
         <Title title="NEW ARRIVALS" />
 

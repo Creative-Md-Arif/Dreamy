@@ -1,8 +1,12 @@
 /* eslint-disable react/prop-types */
 import { CiShoppingBasket } from "react-icons/ci";
+import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
+import { addToCart } from "../../redux/dreamySlice";
+import { toast } from "react-toastify";
 
 const ProductCard = ({ product }) => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const id = product.title;
   const idString = (id) => {
@@ -11,13 +15,12 @@ const ProductCard = ({ product }) => {
 
   const rootId = idString(id);
 
-
   const handleDetails = () => {
     navigate(`/product/${rootId}`, {
-      state : {
-        item : product,
-      }
-    })
+      state: {
+        item: product,
+      },
+    });
   };
 
   return (
@@ -59,8 +62,29 @@ const ProductCard = ({ product }) => {
           <p className=" font-paragraphFont text-xl font-bold text-black">
             ${product.price}
           </p>
+          {/* Add to cart button */}
           <Link to="#">
-            <button className="flex items-center justify-center text-xl w-8 h-8 bg-[#9A9A9A] rounded-full text-white hover:bg-[#FFC633] hover:text-black transition-all duration-300">
+            <button
+              onClick={() =>
+                dispatch(
+                  addToCart({
+                    id: product.id,
+                    title: product.title,
+                    image: product.image,
+                    price: product.price,
+                    quantity: 1,
+                    description: product.description,
+                  }),toast.success(`${product.title} is added`, {
+                    position: "top-center",
+                    autoClose: 5000,
+                    closeOnClick: true,
+                   
+                   
+                    })
+                )
+              }
+              className="flex items-center justify-center text-xl w-8 h-8 bg-[#9A9A9A] rounded-full text-white hover:bg-[#FFC633] hover:text-black transition-all duration-300"
+            >
               <CiShoppingBasket />
             </button>
           </Link>
