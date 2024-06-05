@@ -22,7 +22,6 @@ useEffect(() => {
      <Logo/>
      <NewArrivals products={products}/>
      <TopSelling products={products}/>
-
     </div>
   )
 }

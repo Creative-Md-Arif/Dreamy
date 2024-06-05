@@ -5,34 +5,42 @@ import { profileImg } from "../../assets/image";
 import { FiShoppingCart } from "react-icons/fi";
 import { useSelector } from "react-redux";
 
-
 const Header = () => {
-  const navLinks = [
-    { title: "shop ", path: "/" },
-    { title: "On Sale ", path: "/" },
-    { title: "New Arrivals ", path: "/" },
-    { title: "Brands ", path: "/" },
-  ];
 
   const productData = useSelector((state) => state.dreamy.productData);
   return (
     <header className="py-6 bg-gradient-to-b from-gray-300 to-teal-500 sticky top-0 z-50">
       <div className="flex items-center justify-around">
         <div>
-         <Link to="/">
-         <h1 className=" text-[42px] font-bold text-black uppercase animate-pulse">
-            Dreamy
-          </h1>
-         </Link>
+          <Link to="/">
+            <h1 className=" text-[42px] font-bold text-black uppercase animate-pulse">
+              Dreamy
+            </h1>
+          </Link>
         </div>
-        <div className="flex items-center gap-10">
-          {navLinks.map(({ title, path }) => (
-            <ul key={title}>
+        <div>
+          <ul className="flex items-center gap-10">
+            <Link to="/">
               <li className=" font-serif text-xl font-normal text-black uppercase hover:text-gray-500 transition duration-300">
-                <Link to="#">{title}</Link>
+                shop
               </li>
-            </ul>
-          ))}
+            </Link>
+            <Link to="/">
+              <li className=" font-serif text-xl font-normal text-black uppercase hover:text-gray-500 transition duration-300">
+              On Sale
+              </li>
+            </Link>
+            <Link to="/">
+              <li className=" font-serif text-xl font-normal text-black uppercase hover:text-gray-500 transition duration-300">
+              New Arrivals 
+              </li>
+            </Link>
+            <Link to="/">
+              <li className=" font-serif text-xl font-normal text-black uppercase hover:text-gray-500 transition duration-300">
+              Brands
+              </li>
+            </Link>
+          </ul>
         </div>
         <div>
           <div className="">
@@ -44,17 +52,17 @@ const Header = () => {
           </div>
         </div>
         <div className="flex items-center gap-10">
-           <Link to="/cart">
-              <div className=" relative">
+          <Link to="/cart">
+            <div className=" relative">
               <FiShoppingCart className="text-[50px]" />
               <span className=" absolute w-6 top-2 left-5 text-xl flex items-center justify-center">
                 {productData.length}
-                </span>
-              </div>
-           </Link>
-           <div>
+              </span>
+            </div>
+          </Link>
+          <div>
             <img className="w-10 h-10 rounded-full" src={profileImg} alt="" />
-           </div>         
+          </div>
         </div>
       </div>
     </header>

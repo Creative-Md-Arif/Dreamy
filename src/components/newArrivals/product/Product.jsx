@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import {  useLocation } from "react-router-dom";
 import { FaStar } from "react-icons/fa";
 import { addToCart } from "../../../redux/dreamySlice";
 import { useDispatch } from "react-redux";
@@ -9,7 +9,25 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 
+
+
 const Product = () => {
+
+// const [productItem , setProductItem] = useState([]);
+
+// const data = useLoaderData();
+
+// useEffect(() => {
+//   setProductItem(data.data)
+// })
+
+// console.log(productItem);
+
+
+
+
+
+ 
   const dispatch = useDispatch();
   const [productDetails, setProductDetails] = useState({});
   let [baseQty, setBaseQty] = useState(1);
@@ -19,7 +37,7 @@ const Product = () => {
   }, []);
 
   // Select Colors Function
-  const product = {
+  const colorName = {
     id: 1,
     name: "Cool T-Shirt",
     colors: [
@@ -28,7 +46,7 @@ const Product = () => {
       { name: "Blue", hex: "#0000FF" },
     ],
   };
-  const [selectedColor, setSelectedColor] = useState(product.colors[0]);
+  const [selectedColor, setSelectedColor] = useState(colorName.colors[0]);
   const handleColorSelect = (color) => {
     setSelectedColor(color);
   };
@@ -129,7 +147,7 @@ const Product = () => {
                   <p>Selected Color: {selectedColor.name}</p>
                 </div>
                 <div className="color-options flex pt-3 ">
-                  {product.colors.map((color) => (
+                  {colorName.colors.map((color) => (
                     <div
                       key={color.name}
                       className="color-option mr-3 w-6 h-6 rounded-full cursor-pointer"
@@ -231,7 +249,6 @@ const Product = () => {
             </div>
           </div>
         </div>
-
       </div>
     </section>
   );
