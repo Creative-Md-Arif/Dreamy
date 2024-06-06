@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { profileImg } from "../../assets/image";
 import { FiShoppingCart } from "react-icons/fi";
@@ -8,9 +8,13 @@ import { useSelector } from "react-redux";
 const Header = () => {
 
   const productData = useSelector((state) => state.dreamy.productData);
+
+
+
   return (
-    <header className="py-6 bg-gradient-to-b from-gray-300 to-teal-500 sticky top-0 z-50">
-      <div className="flex items-center justify-around">
+    <header>
+     <div className="py-6 bg-gradient-to-b from-gray-300 to-teal-500 sticky top-0 z-50">
+     <div className="flex items-center justify-around">
         <div>
           <Link to="/">
             <h1 className=" text-[42px] font-bold text-black uppercase animate-pulse">
@@ -65,7 +69,9 @@ const Header = () => {
           </div>
         </div>
       </div>
+     </div>
     </header>
+   
   );
 };
 

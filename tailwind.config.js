@@ -18,6 +18,15 @@ export default {
         black_rgba: 'rgba(0, 0, 0, 0.4)', 
         Black: "#1E2832",
         primaryBG: "#1e28320d",
+      },
+      animation: {
+        'gradient-x': 'gradient-x 3s ease infinite',
+      },
+      keyframes: {
+        'gradient-x': {
+          '0%, 100%': { 'background-size': '200% 200%', 'background-position': 'left center' },
+          '50%': { 'background-size': '200% 200%', 'background-position': 'right center' }
+        }
       }
     },
     container: {
