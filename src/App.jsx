@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 
 import './App.css'
 import {
@@ -6,6 +7,7 @@ import {
   Route,
   RouterProvider,
 } from "react-router-dom";
+
 
 // layout
 import Layout from './layout/Layout';
