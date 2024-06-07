@@ -3,7 +3,6 @@ import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 
-
 const Login = () => {
   const auth = getAuth();
   const [email, setEmail] = useState("");
@@ -12,40 +11,54 @@ const Login = () => {
   const navigate = useNavigate();
 
   const handleLogin = () => {
-     if( email == ""){
-        toast.error("Email is required");
-      } else if(password == ""){
-        toast.error("Password is required");
-      } else if(remember == ""){
-          toast.error("Please I accept the remember me")
-      } else{
-        signInWithEmailAndPassword(auth, email, password)
+    if (email == "") {
+      toast.error("Email is required");
+    } else if (password == "") {
+      toast.error("Password is required");
+    } else if (remember == "") {
+      toast.error("Please I accept the remember me");
+    } else {
+      signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
-          // Signed in 
+          // Signed in
           const user = userCredential.user;
-          console.log(user);
-          if(user.emailVerified == true){
-            toast.success("Login Successfully")
+        //   console.log(user);
+          if (user.emailVerified == true) {
+            toast.success("Login Successfully");
           } else {
-            toast.error("Please verify email ! Check Email")
+            toast.error("Please verify email ! Check Email");
           }
           setTimeout(() => {
-            navigate("/paymentGetaway")
-         }, 1000)
+            navigate("/paymentGetaway");
+          }, 1000);
           // ...
         })
         .catch((error) => {
-          const errorCode = error.code;
-          const errorMessage = error.message;
-          console.log(errorCode,errorMessage);
+          if (error.code === "auth/invalid-email") {
+            toast.error("The email address is not valid.");
+          } else if (error.code === "auth/weak-password") {
+            toast.error("Password should be at least 6 characters");
+          } else if (error.code === "auth/email-already-in-use") {
+            toast.error(
+              "The email address is already in use by another account."
+            );
+          } else if (error.code === "auth/operation-not-allowed") {
+            toast.error("Email/Password accounts are not enabled.");
+          } else {
+            toast.error(
+              "The address is not valid ! please check email & password"
+            );
+          }
+          //   const errorCode = error.code;
+          //   const errorMessage = error.message;
+          //   console.log(errorCode,errorMessage);
         });
-      }
-
-  }
+    }
+  };
 
   return (
     <section className="bg-gray-50 dark:bg-gray-900">
-        <ToastContainer
+      <ToastContainer
         position="top-center"
         autoClose={5000}
         closeOnClick

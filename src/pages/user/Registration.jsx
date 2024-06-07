@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
@@ -29,7 +30,7 @@ const handleSubmit = ()=> {
   .then((userCredential) => {
     // Signed up 
     const user = userCredential.user;
-    console.log(user);
+    // console.log(user);
     sendEmailVerification(auth.currentUser) // Email verification sent!
    .then(() => {
      toast.success("Registration Successfully! Verification email sent! Please check your inbox.")
@@ -55,9 +56,9 @@ const handleSubmit = ()=> {
     } else {
       toast.error("Error: " + error.message);
     }
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    console.log(errorCode, errorMessage);
+    // const errorCode = error.code;
+    // const errorMessage = error.message;
+    // console.log(errorCode, errorMessage);
    
   });
   }
