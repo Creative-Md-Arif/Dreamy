@@ -18,16 +18,9 @@ export default {
         black_rgba: 'rgba(0, 0, 0, 0.4)', 
         Black: "#1E2832",
         primaryBG: "#1e28320d",
+        primary: {"50":"#eff6ff","100":"#dbeafe","200":"#bfdbfe","300":"#93c5fd","400":"#60a5fa","500":"#3b82f6","600":"#2563eb","700":"#1d4ed8","800":"#1e40af","900":"#1e3a8a","950":"#172554"}
       },
-      animation: {
-        'gradient-x': 'gradient-x 3s ease infinite',
-      },
-      keyframes: {
-        'gradient-x': {
-          '0%, 100%': { 'background-size': '200% 200%', 'background-position': 'left center' },
-          '50%': { 'background-size': '200% 200%', 'background-position': 'right center' }
-        }
-      }
+     
     },
     container: {
       center: true,

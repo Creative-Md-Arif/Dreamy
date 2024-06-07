@@ -17,12 +17,21 @@ import Cart from './pages/cart/Cart';
 import { productsData } from './api/Api';
 import Product from './components/newArrivals/product/Product';
 import NewArrivals from './components/newArrivals/NewArrivals';
+import Registration from './pages/user/Registration';
+import Login from './pages/user/Login';
+import TermsCondition from './pages/user/terms/TermsCondition';
+import PaymentGetaway from './pages/paymentGetway/PaymentGetaway';
+
 function App() {
 
 
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route>
+        <Route path='/registration' element={<Registration/>}></Route>
+        <Route path='/login' element={<Login/>}></Route>
+        <Route path='/termsCondition' element={<TermsCondition/>}></Route>
+        <Route path='/paymentGetaway' element={<PaymentGetaway/>}></Route>
         <Route path="/" element={<Layout />} >
           <Route path='/' element={<Home/> } loader={productsData}></Route>
           <Route path='/product/:id' element={<Product/>} loader={productsData}></Route>

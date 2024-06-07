@@ -19,7 +19,7 @@ const Cart = () => {
   const [baseDiscountAmt, setBaseDiscountAmt] = useState(0);
   const [promoDiscountAmt, setPromoDiscountAmt] = useState(0);
   const [subTotal, setSubTotal] = useState(0);
-  const [promoCode, setPromoCode] = useState('');
+  const [promoCode, setPromoCode] = useState("");
   const [promoApplied, setPromoApplied] = useState(false);
   const deliveryCharge = 10; //Define the default delivery charge
   const baseDiscountRate = 0.2; // Define the base discount rate (20%)
@@ -33,31 +33,29 @@ const Cart = () => {
       price += item.price * item.quantity;
       return price;
     });
-   // Calculate the base discount amount
-   const baseDiscountAmount = price * baseDiscountRate;
-   setBaseDiscountAmt(baseDiscountAmount);
+    // Calculate the base discount amount
+    const baseDiscountAmount = price * baseDiscountRate;
+    setBaseDiscountAmt(baseDiscountAmount);
 
     // Calculate the promo discount amount if promo is applied
     const promoDiscountAmount = promoApplied ? price * promoDiscountRate : 0;
     setPromoDiscountAmt(promoDiscountAmount);
 
     // Calculate the subtotal (total - discount + delivery charge)
-    const discountPrice = price - baseDiscountAmount  - promoDiscountAmount;
+    const discountPrice = price - baseDiscountAmount - promoDiscountAmount;
     const finalAmount = discountPrice + deliveryCharge;
 
     setTotalAmt(price); // Set the total amount before discount and delivery charge
     setSubTotal(finalAmount); // Set the final amount after discount and delivery charge
   }, [productData, promoApplied]);
-  
+
   const handleApplyPromoCode = () => {
-    if (promoCode === 'PROMO10' ) {
+    if (promoCode === "PROMO10") {
       setPromoApplied(true);
-    } else{
-      toast.error('Invalid promo code');
+    } else {
+      toast.error("Invalid promo code");
     }
   };
-
-
 
   return (
     <section>
@@ -195,10 +193,10 @@ const Cart = () => {
                 <div className="flex justify-between">
                   <p className="font-titleFont text-[20px] font-normal text-gray-400">
                     Discount(-20%)
-                  </p>        
-                    <p className="font-titleFont text-[20px] font-bold text-red-500">
-                      -${baseDiscountAmt}
-                    </p>
+                  </p>
+                  <p className="font-titleFont text-[20px] font-bold text-red-500">
+                    -${baseDiscountAmt}
+                  </p>
                 </div>
                 <div className="flex justify-between">
                   <p className="font-titleFont text-[20px] font-normal text-gray-400">
@@ -209,7 +207,14 @@ const Cart = () => {
                   </p>
                 </div>
                 <div>
-                {promoDiscountAmt > 0 && <p className="flex justify-between font-titleFont text-[20px] font-normal text-gray-400">Promo Discount Applied: <span className="font-titleFont text-[20px] font-bold text-red-500">-${promoDiscountAmt.toFixed(2)}</span></p>}
+                  {promoDiscountAmt > 0 && (
+                    <p className="flex justify-between font-titleFont text-[20px] font-normal text-gray-400">
+                      Promo Discount Applied:{" "}
+                      <span className="font-titleFont text-[20px] font-bold text-red-500">
+                        -${promoDiscountAmt.toFixed(2)}
+                      </span>
+                    </p>
+                  )}
                 </div>
               </div>
               <div className="flex flex-col gap-5">
@@ -225,24 +230,26 @@ const Cart = () => {
                   <div className="flex gap-2 bg-[#F0F0F0] px-4 py-2 w-full rounded-full ">
                     <img src={vector} alt="" />
                     <input
-                        value={promoCode}
-                        onChange={(e) => 
-                        setPromoCode(e.target.value)
-                      }
+                      value={promoCode}
+                      onChange={(e) => setPromoCode(e.target.value)}
                       placeholder="Add promo code"
                       className="bg-transparent outline-none"
                     />
-                      
                   </div>
-                  <button 
-                   onClick={handleApplyPromoCode} 
-                   className="bg-black text-white px-12 py-2 rounded-full ">
+                  <button
+                    onClick={handleApplyPromoCode}
+                    className="bg-black text-white px-12 py-2 rounded-full "
+                  >
                     Apply
                   </button>
                 </div>
-                <button className="flex items-center justify-center gap-2 bg-black py-2 text-white rounded-full">
-                  Go to Checkout <BsArrowRight />
-                </button>
+                <div >
+                  <Link to="/registration" className="flex items-center justify-center gap-2 bg-black py-2 text-white rounded-full">
+                    <button className="flex items-center gap-2">
+                      Go to Checkout <BsArrowRight />
+                    </button>
+                  </Link>
+                </div>
               </div>
             </div>
           </div>

@@ -12,8 +12,7 @@ const Header = () => {
 
 
   return (
-    <header>
-     <div className="py-6 bg-gradient-to-b from-gray-300 to-teal-500 sticky top-0 z-50">
+    <header className="py-6 bg-gradient-to-b from-gray-300 to-teal-500 sticky top-0 z-50">
      <div className="flex items-center justify-around">
         <div>
           <Link to="/">
@@ -69,7 +68,6 @@ const Header = () => {
           </div>
         </div>
       </div>
-     </div>
     </header>
    
   );
