@@ -11,9 +11,10 @@ import {
   resetCart,
 } from "../../redux/dreamySlice";
 import { ToastContainer, toast } from "react-toastify";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Cart = () => {
+  const userInfo = useSelector((state) => state.dreamy.userInfo);
   const productData = useSelector((state) => state.dreamy.productData);
   const [totalAmt, setTotalAmt] = useState("");
   const [baseDiscountAmt, setBaseDiscountAmt] = useState(0);
@@ -26,6 +27,7 @@ const Cart = () => {
   const promoDiscountRate = 0.1; // Define the promo discount rate (10%)
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     let price = 0;
@@ -57,10 +59,18 @@ const Cart = () => {
     }
   };
 
+  const handleCheckOut = () => {
+    if (userInfo == null) {
+      navigate("/registration");
+    } else {
+      navigate("/paymentGetaway");
+    }
+  };
+
   return (
-    <section>
+    <section className="">
       <ToastContainer />
-      <img src={cartImg} alt="" className="h-60 object-cover w-full" />
+      <img src={cartImg} alt="" className=" h-72 object-cover w-full" />
       <div className="container">
         <div className="flex flex-col gap-2 py-5">
           {/* back to home */}
@@ -243,12 +253,15 @@ const Cart = () => {
                     Apply
                   </button>
                 </div>
-                <div >
-                  <Link to="/registration" className="flex items-center justify-center gap-2 bg-black py-2 text-white rounded-full">
+                <div>
+                  <div
+                    onClick={handleCheckOut}
+                    className="flex items-center justify-center gap-2 bg-black py-2 text-white rounded-full cursor-pointer"
+                  >
                     <button className="flex items-center gap-2">
                       Go to Checkout <BsArrowRight />
                     </button>
-                  </Link>
+                  </div>
                 </div>
               </div>
             </div>

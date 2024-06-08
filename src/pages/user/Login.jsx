@@ -2,13 +2,19 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { getDatabase, ref, set } from "firebase/database";
+import { useDispatch } from "react-redux";
+import { addUser } from "../../redux/dreamySlice";
+
 
 const Login = () => {
+  const db = getDatabase();
   const auth = getAuth();
   const [email, setEmail] = useState("");
   const [password, setPassWord] = useState("");
   const [remember, setRemember] = useState("");
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleLogin = () => {
     if (email == "") {
@@ -22,15 +28,26 @@ const Login = () => {
         .then((userCredential) => {
           // Signed in
           const user = userCredential.user;
-        //   console.log(user);
+          console.log(user);
           if (user.emailVerified == true) {
             toast.success("Login Successfully");
+            set(ref(db, 'users/' + user.uid), {
+              username: user.displayName,
+              profile_picture : user.photoURL,
+            });
+            setTimeout(() => {
+              navigate("/paymentGetaway");
+              }, 1000);
+              dispatch(addUser({
+                id:user.uid,
+                name: user.displayName,
+                email: user.email,
+                Image: user.photoURL,
+              }))
+              
           } else {
             toast.error("Please verify email ! Check Email");
           }
-          setTimeout(() => {
-            navigate("/paymentGetaway");
-          }, 1000);
           // ...
         })
         .catch((error) => {

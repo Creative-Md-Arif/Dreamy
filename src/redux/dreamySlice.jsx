@@ -47,6 +47,14 @@ export const dreamySlice = createSlice({
         item.quantity--;
       }
     },
+    // ========================= User Start Here ==========
+    addUser: (state, action) => {
+      state.userInfo = action.payload;
+    },
+    removeUser: (state) => {
+      state.userInfo = null;
+    },
+    // ========================= User End Here ==========
   },
 });
 
@@ -56,5 +64,7 @@ export const {
   resetCart,
   incrementQuantity,
   decrementQuantity,
+  addUser,
+  removeUser,
 } = dreamySlice.actions;
 export default dreamySlice.reducer;

@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { profileImg } from "../../assets/image";
 import { FiShoppingCart } from "react-icons/fi";
@@ -8,11 +8,16 @@ import { useSelector } from "react-redux";
 const Header = () => {
 
   const productData = useSelector((state) => state.dreamy.productData);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    setIsVisible(true);
+  }, []);
 
 
 
   return (
-    <header className="py-6 bg-gradient-to-b from-gray-300 to-teal-500 sticky top-0 z-50">
+    <header className={`fixed top-0 left-0 right-0 bg-white shadow-md transition-transform duration-500 z-50 ${isVisible ? 'transform translate-y-0' : 'transform -translate-y-full'}`}>
      <div className="flex items-center justify-around">
         <div>
           <Link to="/">

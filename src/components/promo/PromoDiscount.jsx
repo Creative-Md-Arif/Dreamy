@@ -7,12 +7,12 @@ const PromoDiscount = () => {
 
   if (!isVisible) return null;
   return (
-    <div className="relative ">
-      <div className="bg-blue-500 text-white px-4 py-1 flex justify-center bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 animate-gradient-x ">
-        <span className="text-center">
-          Special Promotion: Get 10% off on all items! Use code PROMO10 at
+    <div className=" fixed w-full ">
+      <div className="bg-blue-500 text-white px-4 py-4 flex justify-center bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 animate-gradient-x ">
+        <p className="text-center">
+          Special Promotion: Get 10% off on all items! Use code <span className=" font-sans text-black text-2xl mx-2 font-semibold">PROMO10</span> at
           checkout.
-        </span>
+        </p>
         <button
           onClick={() => setIsVisible(false)}
           className=" absolute right-1 top-1 bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded"

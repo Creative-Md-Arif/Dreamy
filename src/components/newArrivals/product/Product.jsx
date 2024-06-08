@@ -79,7 +79,7 @@ const Product = () => {
   return (
     <section>
       <ToastContainer />
-      <div className="container my-10">
+      <div className="container my-10 pt-20">
         <div className="grid grid-cols-2 items-center gap-10">
           <div className="w-full">
             <div className="flex items-center justify-center">

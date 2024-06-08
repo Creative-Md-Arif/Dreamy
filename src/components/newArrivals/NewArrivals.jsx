@@ -11,7 +11,7 @@ const NewArrivals = ({ products }) => {
       <ToastContainer/>
       <div className="container">
         <Title title="NEW ARRIVALS" />
-       <div className="grid grid-cols-4 gap-10 py-10">
+       <div className="grid grid-cols-4 gap-10 py-20 ">
           {products.slice(0, 12).map((item) => (
             <ProductCard key={item.id} product={item} />
           ))}

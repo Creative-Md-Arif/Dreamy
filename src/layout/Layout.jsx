@@ -8,8 +8,12 @@ import PromoDiscount from "../components/promo/PromoDiscount";
 const Layout = () => {
   return (
     <div>
-      <Header />
-      <PromoDiscount/>
+    <div className="">
+       <Header />
+    </div>
+     <div className="absolute top-0 left-0 w-full z-50">
+     <PromoDiscount/>
+     </div>
       <Outlet />
       <Footer />
     </div>

@@ -24,9 +24,9 @@ const ProductCard = ({ product }) => {
   };
 
   return (
-    <div>
+    <div >
       {/* image hover  */}
-      <div className=" group">
+      <div className=" group ">
         <div
           onClick={handleDetails}
           className=" relative overflow-hidden h-[400px] flex items-center justify-center border"

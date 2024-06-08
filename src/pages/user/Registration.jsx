@@ -2,11 +2,14 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
-import { getAuth, createUserWithEmailAndPassword, sendEmailVerification } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, sendEmailVerification, updateProfile } from "firebase/auth";
+import { getDatabase, ref, set } from "firebase/database";
+
 
 
 const Registration = () => {
   const auth = getAuth();
+  const database = getDatabase();
   const navigate = useNavigate();
 
 
@@ -32,6 +35,9 @@ const handleSubmit = ()=> {
     const user = userCredential.user;
     // console.log(user);
     sendEmailVerification(auth.currentUser) // Email verification sent!
+    updateProfile(auth.currentUser, {
+      displayName: name, photoURL: "https://example.com/jane-q-user/profile.jpg"
+    })
    .then(() => {
      toast.success("Registration Successfully! Verification email sent! Please check your inbox.")
      setTimeout(() => {
