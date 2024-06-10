@@ -6,7 +6,6 @@ import { getDatabase, ref, set } from "firebase/database";
 import { useDispatch } from "react-redux";
 import { addUser } from "../../redux/dreamySlice";
 
-
 const Login = () => {
   const db = getDatabase();
   const auth = getAuth();
@@ -31,20 +30,14 @@ const Login = () => {
           console.log(user);
           if (user.emailVerified == true) {
             toast.success("Login Successfully");
-            set(ref(db, 'users/' + user.uid), {
+            set(ref(db, "users/" + user.uid), {
               username: user.displayName,
-              profile_picture : user.photoURL,
+              profile_picture: user.photoURL,
             });
             setTimeout(() => {
               navigate("/paymentGetaway");
-              }, 1000);
-              dispatch(addUser({
-                id:user.uid,
-                name: user.displayName,
-                email: user.email,
-                Image: user.photoURL,
-              }))
-              
+            }, 1000);
+            dispatch(addUser(user));
           } else {
             toast.error("Please verify email ! Check Email");
           }

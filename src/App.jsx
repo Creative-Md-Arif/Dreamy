@@ -21,6 +21,7 @@ import Registration from './pages/user/Registration';
 import Login from './pages/user/Login';
 import TermsCondition from './pages/user/terms/TermsCondition';
 import PaymentGetaway from './pages/paymentGetway/PaymentGetaway';
+import Profile from './pages/user/Profile';
 
 function App() {
 
@@ -32,12 +33,13 @@ function App() {
         <Route path='/login' element={<Login/>}></Route>
         <Route path='/termsCondition' element={<TermsCondition/>}></Route>
         <Route path='/paymentGetaway' element={<PaymentGetaway/>}></Route>
+        <Route path='/profile' element={<Profile/>}></Route>
         <Route path="/" element={<Layout />} >
           <Route path='/' element={<Home/> } loader={productsData}></Route>
           <Route path='/product/:id' element={<Product/>} loader={productsData}></Route>
           <Route path='newArrivals' element={<NewArrivals/>} ></Route>
            <Route path='/cart' element={<Cart/>}></Route>
-          <Route path='/contact' element={<Contact/> }></Route>
+          <Route path='/contact' element={<Contact/> }></Route>         
         </Route>
       </Route>
     )

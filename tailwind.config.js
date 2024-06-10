@@ -9,6 +9,7 @@ export default {
       fontFamily:{
         headingFont:["Bebas Neue", "sans-serif"],
         headingFontTwo:["Playfair Display", "serif"],
+        headingThree:["Roboto", "sans-serif"],
         titleFont:[ "Oswald"," sans-serif"],
         paragraphFont:["Montserrat", "sans-serif"]
       },

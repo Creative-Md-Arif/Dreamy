@@ -2,75 +2,75 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
-import { getAuth, createUserWithEmailAndPassword, sendEmailVerification, updateProfile } from "firebase/auth";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  sendEmailVerification,
+  updateProfile,
+} from "firebase/auth";
 import { getDatabase, ref, set } from "firebase/database";
-
-
 
 const Registration = () => {
   const auth = getAuth();
   const database = getDatabase();
   const navigate = useNavigate();
 
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [isChecked, setIsChecked] = useState("");
 
- const [name , setName] = useState("");
- const [email ,setEmail] = useState("");
- const [password , setPassword] = useState("");
- const [isChecked, setIsChecked] = useState(""); 
-
-
-const handleSubmit = ()=> {
-  if(name == ""){
-    toast.error("Name is required");
-  } else if( email == ""){
-    toast.error("Email is required");
-  } else if(password == ""){
-    toast.error("Password is required");
-  } else if(isChecked == ""){
-      toast.error("Please I accept the Terms and Conditions")
-  } else {
-  createUserWithEmailAndPassword(auth, email, password)
-  .then((userCredential) => {
-    // Signed up 
-    const user = userCredential.user;
-    // console.log(user);
-    sendEmailVerification(auth.currentUser) // Email verification sent!
-    updateProfile(auth.currentUser, {
-      displayName: name, photoURL: "https://example.com/jane-q-user/profile.jpg"
-    })
-   .then(() => {
-     toast.success("Registration Successfully! Verification email sent! Please check your inbox.")
-     setTimeout(() => {
-      navigate("/login")
-     }, 1500);
-   
-  });
-  
-    // ...
-  })
-  .catch((error) => {
-    if (error.code === "auth/invalid-email") {
-      toast.error("The email address is not valid.");
-    } else if (error.code === "auth/weak-password") {
-      toast.error("Password should be at least 6 characters");
-    } else if (error.code === "auth/email-already-in-use") {
-      toast.error(
-        "The email address is already in use by another account."
-      );
-    } else if (error.code === "auth/operation-not-allowed") {
-      toast.error("Email/Password accounts are not enabled.");
+  const handleSubmit = () => {
+    if (name == "") {
+      toast.error("Name is required");
+    } else if (email == "") {
+      toast.error("Email is required");
+    } else if (password == "") {
+      toast.error("Password is required");
+    } else if (isChecked == "") {
+      toast.error("Please I accept the Terms and Conditions");
     } else {
-      toast.error("Error: " + error.message);
+      createUserWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+          // Signed up
+          const user = userCredential.user;
+          // console.log(user);
+          sendEmailVerification(auth.currentUser); // Email verification sent!
+          updateProfile(auth.currentUser, {
+            displayName: name,
+            photoURL: "",
+
+          }).then(() => {
+            toast.success(
+              "Registration Successfully! Verification email sent! Please check your inbox."
+            );
+            setTimeout(() => {
+              navigate("/login");
+            }, 1500);
+          });
+
+          // ...
+        })
+        .catch((error) => {
+          if (error.code === "auth/invalid-email") {
+            toast.error("The email address is not valid.");
+          } else if (error.code === "auth/weak-password") {
+            toast.error("Password should be at least 6 characters");
+          } else if (error.code === "auth/email-already-in-use") {
+            toast.error(
+              "The email address is already in use by another account."
+            );
+          } else if (error.code === "auth/operation-not-allowed") {
+            toast.error("Email/Password accounts are not enabled.");
+          } else {
+            toast.error("Error: " + error.message);
+          }
+          // const errorCode = error.code;
+          // const errorMessage = error.message;
+          // console.log(errorCode, errorMessage);
+        });
     }
-    // const errorCode = error.code;
-    // const errorMessage = error.message;
-    // console.log(errorCode, errorMessage);
-   
-  });
-  }
-
-}
-
+  };
 
   return (
     <section className="bg-gray-50 dark:bg-gray-900">
@@ -136,7 +136,7 @@ const handleSubmit = ()=> {
               <div className="flex items-start">
                 <div className="flex items-center h-5">
                   <input
-                    onChange={(e) =>setIsChecked(e.target.checked)}
+                    onChange={(e) => setIsChecked(e.target.checked)}
                     id="terms"
                     aria-describedby="terms"
                     type="checkbox"

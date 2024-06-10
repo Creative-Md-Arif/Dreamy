@@ -3,7 +3,7 @@ import Counter from "./Counter";
 
 const Banner = () => {
   return (
-    <section className="bg-Bg pt-[82px]">
+    <section className="bg-Bg pt-[120px]">
       <div className="container flex justify-between">
         {/* left side start */}
         <div className="w-1/2 flex flex-col gap-6">

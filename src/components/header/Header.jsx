@@ -6,7 +6,7 @@ import { FiShoppingCart } from "react-icons/fi";
 import { useSelector } from "react-redux";
 
 const Header = () => {
-
+  const userInfo = useSelector((state) => state.dreamy.userInfo);
   const productData = useSelector((state) => state.dreamy.productData);
   const [isVisible, setIsVisible] = useState(false);
 
@@ -14,11 +14,13 @@ const Header = () => {
     setIsVisible(true);
   }, []);
 
-
-
   return (
-    <header className={`fixed top-0 left-0 right-0 bg-white shadow-md transition-transform duration-500 z-50 ${isVisible ? 'transform translate-y-0' : 'transform -translate-y-full'}`}>
-     <div className="flex items-center justify-around">
+    <header
+      className={`fixed top-0 left-0 right-0 bg-white shadow-md transition-transform duration-500 z-50 ${
+        isVisible ? "transform translate-y-0" : "transform -translate-y-full"
+      }`}
+    >
+      <div className="flex items-center justify-around">
         <div>
           <Link to="/">
             <h1 className=" text-[42px] font-bold text-black uppercase animate-pulse">
@@ -35,17 +37,17 @@ const Header = () => {
             </Link>
             <Link to="/">
               <li className=" font-serif text-xl font-normal text-black uppercase hover:text-gray-500 transition duration-300">
-              On Sale
+                On Sale
               </li>
             </Link>
             <Link to="/">
               <li className=" font-serif text-xl font-normal text-black uppercase hover:text-gray-500 transition duration-300">
-              New Arrivals 
+                New Arrivals
               </li>
             </Link>
             <Link to="/">
               <li className=" font-serif text-xl font-normal text-black uppercase hover:text-gray-500 transition duration-300">
-              Brands
+                Brands
               </li>
             </Link>
           </ul>
@@ -68,13 +70,14 @@ const Header = () => {
               </span>
             </div>
           </Link>
-          <div>
-            <img className="w-10 h-10 rounded-full" src={profileImg} alt="" />
-          </div>
+          <Link to="/profile">
+            <div>
+              <img className="w-10 h-10 rounded-full" src={userInfo?.photoURL} alt="" />
+            </div>
+          </Link>
         </div>
       </div>
     </header>
-   
   );
 };
 
