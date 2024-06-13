@@ -5,6 +5,7 @@ import Logo from '../../components/logo/Logo'
 import NewArrivals from '../../components/newArrivals/NewArrivals'
 import { useLoaderData } from 'react-router-dom'
 import TopSelling from '../../components/topSelling/TopSelling'
+import DressStyle from '../../components/dressStyle/DressStyle'
 
 
 const Home = () => {
@@ -22,6 +23,7 @@ useEffect(() => {
      <Logo/>
      <NewArrivals products={products}/>
      <TopSelling products={products}/>
+     <DressStyle/>
     </div>
   )
 }

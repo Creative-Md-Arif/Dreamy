@@ -27,7 +27,6 @@ const Login = () => {
         .then((userCredential) => {
           // Signed in
           const user = userCredential.user;
-          console.log(user);
           if (user.emailVerified == true) {
             toast.success("Login Successfully");
             set(ref(db, "users/" + user.uid), {
@@ -54,14 +53,10 @@ const Login = () => {
             );
           } else if (error.code === "auth/operation-not-allowed") {
             toast.error("Email/Password accounts are not enabled.");
-          } else {
-            toast.error(
-              "The address is not valid ! please check email & password"
-            );
-          }
-          //   const errorCode = error.code;
-          //   const errorMessage = error.message;
-          //   console.log(errorCode,errorMessage);
+          } 
+            // const errorCode = error.code;
+            // const errorMessage = error.message;
+            // console.log(errorCode,errorMessage);
         });
     }
   };

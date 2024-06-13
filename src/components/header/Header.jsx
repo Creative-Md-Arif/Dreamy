@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { profileImg } from "../../assets/image";
 import { FiShoppingCart } from "react-icons/fi";
 import { useSelector } from "react-redux";
@@ -9,10 +9,19 @@ const Header = () => {
   const userInfo = useSelector((state) => state.dreamy.userInfo);
   const productData = useSelector((state) => state.dreamy.productData);
   const [isVisible, setIsVisible] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     setIsVisible(true);
   }, []);
+
+  const handleProfile = ()=> {
+       if(userInfo){ 
+        navigate("/profile");
+       }else{
+        navigate("/registration");
+       }
+  }
 
   return (
     <header
@@ -70,9 +79,12 @@ const Header = () => {
               </span>
             </div>
           </Link>
-          <Link to="/profile">
+          <Link onClick={handleProfile}>
             <div>
-              <img className="w-10 h-10 rounded-full" src={userInfo?.photoURL} alt="" />
+              <img className="w-10 h-10 rounded-full" src={userInfo
+            ? userInfo.photoURL
+            : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTnfAxGV-fZxGL9elM_hQ2tp7skLeSwMyUiwo4lMm1zyA&s"
+           }  alt="" />
             </div>
           </Link>
         </div>

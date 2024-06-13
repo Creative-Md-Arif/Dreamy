@@ -8,6 +8,10 @@ import pradaImg from "./logo/prada-logo.png";
 import zaraImg from "./logo/zara-logo.png";
 import groupImg from "./logo/Group.png";
 import groupOneImg from "./logo/Group(1).png";
+import casualImg from "./dressStyle/casualImg.png"
+import formalImg from "./dressStyle/formalImg.png"
+import gymImg from "./dressStyle/gymImg.png"
+import partyImg from "./dressStyle/partyImg.png"
 
 
 
@@ -23,4 +27,8 @@ export{
       zaraImg,
       groupImg,
       groupOneImg,
+      casualImg,
+      formalImg,
+      gymImg,
+      partyImg,
 }

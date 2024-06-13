@@ -8,11 +8,10 @@ import {
   sendEmailVerification,
   updateProfile,
 } from "firebase/auth";
-import { getDatabase, ref, set } from "firebase/database";
+
 
 const Registration = () => {
   const auth = getAuth();
-  const database = getDatabase();
   const navigate = useNavigate();
 
   const [name, setName] = useState("");
@@ -38,7 +37,7 @@ const Registration = () => {
           sendEmailVerification(auth.currentUser); // Email verification sent!
           updateProfile(auth.currentUser, {
             displayName: name,
-            photoURL: "",
+            photoURL:"https://cdn-icons-png.freepik.com/256/1077/1077114.png?semt=ais_hybrid",
 
           }).then(() => {
             toast.success(

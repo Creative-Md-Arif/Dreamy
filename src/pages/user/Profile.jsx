@@ -1,20 +1,48 @@
 import { LuLogOut } from "react-icons/lu";
 // import { profileImg } from "../../assets/image";
 import { FaFileImage } from "react-icons/fa";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import {getAuth , signOut } from "firebase/auth";
+import { toast } from "react-toastify";
+import { removeUser, resetCart } from "../../redux/dreamySlice";
+import { useNavigate } from "react-router-dom";
 
 const Profile = () => {
   const userInfo = useSelector((state) => state.dreamy.userInfo);
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+  const auth = getAuth();
   console.log(userInfo);
 
+  const handleLogout = ()=>{
+    signOut(auth)
+    .then(()=>{
+      //Sign-out successfully.
+      toast.success("Log Out Successfully!");
+     if( dispatch(removeUser())){
+        dispatch(resetCart())
+        setTimeout(() => {
+          navigate("/")
+        }, 1000);
+     } 
+    })
+    .catch((error)=> {
+      console.log(error);
+    });
+  }
+
   return (
-    <section className="bg-[#f9f9fa] w-full h-screen">
+    <section className="bg-[#f9f9fa] w-full h-full">
       <div className="py-5 bg-white shadow-sm">
         <div className="container flex  items-center justify-between ">
           <h1 className="text-4xl">Dreamy</h1>
           <img
             className="w-14 h-14 rounded-full border"
-            src={userInfo?.photoURL}
+            src=  
+            {userInfo
+            ? userInfo.photoURL
+            : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTnfAxGV-fZxGL9elM_hQ2tp7skLeSwMyUiwo4lMm1zyA&s"
+           } 
             alt=""
           />
         </div>
@@ -22,7 +50,7 @@ const Profile = () => {
       <div className="container">
         <div className="flex justify-between py-8">
           <h1 className="font-headingFontTwo font-black text-3xl">Profile</h1>
-          <button className="flex items-center gap-2 bg-slate-400 py-2 px-5 rounded-lg text-white hover:bg-slate-500 transition duration-300">
+          <button onClick={handleLogout} className="flex items-center gap-2 bg-slate-400 py-2 px-5 rounded-lg text-white hover:bg-slate-500 transition duration-300">
             Logout
             <LuLogOut />
           </button>
